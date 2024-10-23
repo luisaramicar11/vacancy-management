@@ -5,10 +5,9 @@ type ButtonProps = {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     onClick?: () => void;
-    children: React.ReactNode; // Texto del botón
-    icon?: React.ReactNode; // Componente de ícono opcional
-    bgColor?: string; // Color de fondo opcional
-    textColor?: string; // Color de texto opcional
+    children: React.ReactNode; 
+    bgColor?: string; 
+    textColor?: string; 
   };
   
   const Button: React.FC<ButtonProps> = ({
@@ -16,7 +15,6 @@ type ButtonProps = {
     disabled = false,
     onClick,
     children,
-    icon,
     bgColor,
     textColor,
   }) => {
@@ -29,7 +27,6 @@ type ButtonProps = {
         textColor={textColor}
       >
         {children}
-        {icon && <Icon>{icon}</Icon>} {/* Usa el componente de ícono aquí */}
       </StyledButton>
     );
   };
