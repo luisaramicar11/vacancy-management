@@ -1,50 +1,50 @@
-'use client'
 import React from "react";
-import { StyledInput } from "./InputStyles"
-import Icon from '../../Icons/Icon';
-
+import { FaSearch } from 'react-icons/fa';
+import { StyledInput, ContainerSearch, IconSearch } from "./InputStyles";
+import { useTheme } from 'styled-components';
 interface InputProps {
   type: string;
-  id:string;
+  id: string;
   placeholder: string;
-  children: React.ReactNode; // Texto del botón
-  icon?: React.ReactNode;
   value?: string | number;
   onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean; 
+  disabled?: boolean;
   name: string;
-  required?: boolean; 
+  required?: boolean;
   autoComplete?: string;
 }
 
 const InputSearch: React.FC<InputProps> = ({
   type,
   id,
-  children,
-  icon,
   placeholder,
   value,
   onChange,
   disabled,
   name,
   required = false,
-  autoComplete
+  autoComplete,
 }) => {
+  const theme = useTheme();
   return (
-    <StyledInput type={type}
-    id={id}
-    placeholder={placeholder}
-    value={value}
-    onChange={onChange}
-    disabled={disabled}
-    name={name}
-    required={required} 
-    autoComplete= {autoComplete}>
-    {children}
-    {icon && <Icon>{icon}</Icon>} 
-    </StyledInput>
-    
+    <ContainerSearch>
+      <IconSearch color={theme.colors.borderGray}>
+        <FaSearch />
+      </IconSearch>
+      <StyledInput
+        type={type}
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        disabled={disabled}
+        name={name}
+        required={required}
+        autoComplete={autoComplete}
+      />
+    </ContainerSearch>
   );
 };
 
 export default InputSearch;
+

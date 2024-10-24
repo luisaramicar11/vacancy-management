@@ -16,9 +16,9 @@ interface IColors {
   buttonRedText: string;
   buttonRedTextHover: string;
   buttonRedBgHover: string;
+  buttonFocusPurple: string;
+  buttonFocusPink: string;
   borderGray: string;
-  focusPurple: string;
-  focusPink: string;
 }
 
 interface IGlobalTheme {

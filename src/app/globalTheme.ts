@@ -1,4 +1,4 @@
-import { IGlobalTheme } from '../../styled'; // Ajusta la ruta
+import { IGlobalTheme } from '../../styled'; 
 
 export const GlobalTheme: IGlobalTheme = {
     colors: {
@@ -17,8 +17,8 @@ export const GlobalTheme: IGlobalTheme = {
         buttonRedText: 'rgb(239, 68, 68)',
         buttonRedTextHover: 'rgb(220, 38, 38)',
         buttonRedBgHover: 'rgb(254, 242, 242)',
+        buttonFocusPurple: 'rgb(233, 213, 255)',
+        buttonFocusPink: 'rgb(251, 207, 232)',
         borderGray: 'rgb(229, 231, 235)',
-        focusPurple: 'rgb(233, 213, 255)',
-        focusPink: 'rgb(251, 207, 232)',
     }
 };

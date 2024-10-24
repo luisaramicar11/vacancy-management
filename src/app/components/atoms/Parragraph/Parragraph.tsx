@@ -1,4 +1,3 @@
-// Paragraph.tsx
 import React from 'react';
 import { ParagraphStyled } from './ParragraphStyles';
 

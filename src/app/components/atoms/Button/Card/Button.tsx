@@ -6,10 +6,12 @@ type ButtonProps = {
     type?: 'button' | 'submit' | 'reset';
     disabled?: boolean;
     onClick?: () => void;
-    children: React.ReactNode; // Texto del botón
+    children?: React.ReactNode; 
     icon?: React.ReactNode; 
-    iconColor?: string;
-    // Componente de ícono opcional
+    textColorIcon?: string;
+    textHoverColorIcon?: string;  
+    textColor?: string; 
+    bgColor?: string;
   };
   
   const Button: React.FC<ButtonProps> = ({
@@ -18,16 +20,21 @@ type ButtonProps = {
     onClick,
     children,
     icon,
-    iconColor,
+    textColorIcon,
+    textHoverColorIcon,
+    textColor,
+     bgColor
   }) => {
     return (
       <StyledButton
         type={type}
         disabled={disabled}
         onClick={onClick}
+        bgColor={bgColor}
+        textColor={textColor}
       >
         {children}
-        {icon && <Icon color={iconColor}>{icon}</Icon>} 
+        {icon && <Icon textColorIcon={textColorIcon} textHoverColorIcon={textHoverColorIcon}>{icon} </Icon>} 
       </StyledButton>
     );
   };

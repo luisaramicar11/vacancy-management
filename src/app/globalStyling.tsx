@@ -1,17 +1,18 @@
 'use client';
 import { createGlobalStyle } from "styled-components";
-import { Roboto } from 'next/font/google';
+import { Poppins } from "next/font/google";
 
-const roboto = Roboto({
+const poppins = Poppins({
     subsets: ['latin'],
-    weight: ["100", "300", "400", "500", "700", "900"] 
+    weight: ["300", "400", "500"] 
 });
 
 export const GlobalStyle = createGlobalStyle`
 
 html {
-    background-color: ${({ theme }) => theme.colors.bgGradient}; /* Cambia a bgWhite u otro color según tu preferencia */
-    width: 100vw !important;
+    background: ${({ theme }) => theme.colors.bgGradient};
+    width: 100vw;
+    height: 100vh;
     overflow-x: hidden;
     box-sizing: border-box;
     margin: 0;
@@ -21,16 +22,16 @@ html {
 *,
 *::before,
 *::after {
-    font-family: ${roboto.style.fontFamily};
     box-sizing: inherit;
 }
 
 body {
-    min-height: 100vh;
+    margin: 5px auto;
+    border-radius: 1rem;
     overflow-x: hidden;
-    width: 100% !important;
-    margin: 0;
-    padding: 0;
+    background-color: ${({ theme }) => theme.colors.bgWhite};
+    height: 98vh;
+    width: 80% ;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -48,11 +49,11 @@ p {
 }
 
 input, select, textarea, button {
-    font-family: ${roboto.style.fontFamily};
+    font-family: ${poppins.style.fontFamily};
 }
 
 span {
-    font-family: ${roboto.style.fontFamily};
+
     font-style: italic;
     font-weight: normal;
 }

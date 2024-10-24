@@ -1,7 +1,7 @@
 import React from 'react';
 import InputModal from '../../atoms/Input/Modal/Input';
 import LabelForm from '../../atoms/Label/Label';
-import {InputFieldContainer} from "./InputField";
+import {InputFieldContainer} from "./InputFieldStyles";
 
 interface InputFieldProps {
   labelText: string;

@@ -1,5 +1,6 @@
 "use client"
 import styled from 'styled-components';
+import Header  from "./components/organism/Header/Header"
 
 const PageContainer = styled.div`
     background: ${({ theme }) => theme.colors.bgGradient}; /* Fondo blanco */
@@ -26,10 +27,9 @@ const GradientBackground = styled.div`
 
 const Page: React.FC = () => {
     return (
-        <PageContainer>
-            <GradientBackground />
-            <Title>¡Bienvenido a mi aplicación!</Title>
-        </PageContainer>
+
+            <Header />
+
     );
 };
 

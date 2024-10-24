@@ -1,4 +1,3 @@
-// TitleStyles.ts
 import styled, { css } from 'styled-components';
 
 const sizeStyles = {

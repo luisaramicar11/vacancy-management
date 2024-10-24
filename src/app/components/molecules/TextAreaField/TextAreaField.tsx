@@ -1,6 +1,7 @@
 import React from 'react';
 import TextArea from '../../atoms/TextArea/TextArea'; // Asegúrate de que tienes el componente TextArea
 import LabelForm from '../../atoms/Label/Label';
+import { TextAreaFieldContainer } from "./TextAreaFieldStyles";
 
 interface TextAreaFieldProps {
   labelText: string;
@@ -11,6 +12,10 @@ interface TextAreaFieldProps {
   name: string;
   required?: boolean;
   placeholder?: string;
+  outlineColor?: string; 
+  maxLength?: number; 
+  autoComplete?: string;  
+  ariaLabel: string;
 }
 
 const TextAreaField: React.FC<TextAreaFieldProps> = ({
@@ -22,9 +27,13 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
   name,
   required,
   placeholder,
+  maxLength = 200, 
+  autoComplete,
+  outlineColor,
+  ariaLabel
 }) => {
   return (
-    <div>
+    <TextAreaFieldContainer>
       <LabelForm text={labelText} htmlFor={id} />
       <TextArea
         id={id}
@@ -34,8 +43,12 @@ const TextAreaField: React.FC<TextAreaFieldProps> = ({
         disabled={disabled}
         required={required}
         placeholder={placeholder}
+        maxLength={maxLength} 
+        autoComplete={autoComplete}
+        outlineColor={outlineColor}
+        ariaLabel={ariaLabel}
       />
-    </div>
+    </TextAreaFieldContainer>
   );
 };
 

@@ -2,11 +2,18 @@ import {StyledIcon } from "./IconStyles";
 
 interface IconProps {
   children: React.ReactNode;
-  color?: string; 
+  textColorIcon?: string; 
+  textHoverColorIcon?: string;
 }
 
-const Icon: React.FC<IconProps> = ({ children, color }) => {
-  return <StyledIcon color={color}>{children}</StyledIcon>;
+const Icon: React.FC<IconProps> = ({ children, textColorIcon, textHoverColorIcon }) => {
+  return(
+  <StyledIcon 
+  textColorIcon={textColorIcon}
+  textHoverColorIcon={textHoverColorIcon}>
+    {children}
+  </StyledIcon>
+  )
 };
 
 export default Icon;

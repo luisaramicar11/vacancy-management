@@ -1,7 +1,7 @@
-// SelectField.tsx
 import React from 'react';
-import Select from '../Select/Select';
-import LabelForm from '../Label/LabelForm';
+import Select from '../../atoms/Select/Select';
+import LabelForm from '../../atoms/Label/Label';
+import { SelectFieldContainer } from "./SelectFieldStyles"
 
 interface SelectFieldProps {
   labelText: string;
@@ -27,7 +27,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   options,
 }) => {
   return (
-    <div>
+    <SelectFieldContainer>
       <LabelForm text={labelText} htmlFor={id} />
       <Select
         id={id}
@@ -39,7 +39,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
         ariaLabel={ariaLabel}
         options={options}
       />
-    </div>
+    </SelectFieldContainer>
   );
 };
 
