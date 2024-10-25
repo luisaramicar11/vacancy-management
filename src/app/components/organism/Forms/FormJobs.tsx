@@ -6,6 +6,7 @@ import TextAreaField from "../../molecules/TextAreaField/TextAreaField";
 import SelectField from "../../molecules/SelectField/SelectField";
 import Button from "../../atoms/Button/Form/Button";
 import { FormContainer } from "./FormStyles";
+import { useTheme } from 'styled-components';
 
 const initialForm = {
   title: "",
@@ -16,6 +17,7 @@ const initialForm = {
 
 const AddJobForm: React.FC = () => {
   const [form, setForm] = useState(initialForm);
+  const theme = useTheme();  
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -46,7 +48,7 @@ const AddJobForm: React.FC = () => {
         onChange={handleChange}
         name="title"
         required
-        outlineColor="theme.colors.focusPurple"
+        outlineColor={theme.colors.buttonPurple}
       />
 
       <TextAreaField
@@ -58,7 +60,7 @@ const AddJobForm: React.FC = () => {
         required
         placeholder="Descripción de la vacante"
         ariaLabel="Campo para ingresar la descripción"
-        outlineColor="theme.colors.focusPurple"
+        outlineColor={theme.colors.buttonPurple}
       />
 
       <SelectField
@@ -69,10 +71,12 @@ const AddJobForm: React.FC = () => {
         name="state"
         required
         ariaLabel="Seleccione el estado de la vacante"
+        placeholder="Selecciona el estado de la vacante" 
         options={[
           { value: "OPEN", label: "OPEN" },
           { value: "CLOSE", label: "CLOSE" },
         ]}
+        outlineColor={theme.colors.buttonPurple}
       />
 
       <SelectField
@@ -82,20 +86,22 @@ const AddJobForm: React.FC = () => {
         onChange={handleChange}
         name="company"
         required
+        placeholder="Seleccione la compañía"
         ariaLabel="Seleccione la compañía"
         options={[
           { value: "company1", label: "Compañía 1" },
           { value: "company2", label: "Compañía 2" },
           { value: "company3", label: "Compañía 3" },
         ]}
+        outlineColor={theme.colors.buttonPurple}
       />
 
       <Button
         type="submit"
-        bgColor="theme.colors.buttonPurple"
-        textColor="theme.colors.textWhite"
-        hoverColor="theme.colors.buttonPurpleHover"
-        focusColor="theme.colors.buttonFocusPurple"
+        bgColor={theme.colors.buttonPurple}
+        textColor={theme.colors.textWhite}
+        hoverColor={theme.colors.buttonPurpleHover}
+        focusColor= {theme.colors.buttonFocusPurple}
       >
         Agregar
       </Button>

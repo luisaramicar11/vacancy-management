@@ -4,9 +4,9 @@ export const StyledInput = styled.input`
   height: 0.7rem;
   padding: 16px 40px; 
   border-radius: 3rem;
-  border: 3px solid ${({ theme }) => theme.colors.borderGray};
+  border: 1px solid ${({ theme }) => theme.colors.textLightGray};
   background-color: ${({ theme }) => theme.colors.bgWhite};
-  color: ${({ theme }) => theme.colors.textMediumGray};
+  color: ${({ theme }) => theme.colors.textLightGray};
 
   &:focus {
     outline: none;

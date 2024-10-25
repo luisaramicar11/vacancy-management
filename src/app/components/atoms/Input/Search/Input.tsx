@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FaSearch } from 'react-icons/fa';
 import { StyledInput, ContainerSearch, IconSearch } from "./InputStyles";
@@ -28,7 +29,7 @@ const InputSearch: React.FC<InputProps> = ({
   const theme = useTheme();
   return (
     <ContainerSearch>
-      <IconSearch color={theme.colors.borderGray}>
+      <IconSearch color={theme.colors.textLightGray}>
         <FaSearch />
       </IconSearch>
       <StyledInput

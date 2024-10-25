@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import TextArea from '../../atoms/TextArea/TextArea'; // Asegúrate de que tienes el componente TextArea
 import LabelForm from '../../atoms/Label/Label';

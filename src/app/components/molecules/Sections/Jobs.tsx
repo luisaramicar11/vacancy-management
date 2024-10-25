@@ -1,13 +1,14 @@
+"use client";
 import React from 'react';
 import Button from "../../atoms/Button/WithIcon/Button";
 import Title from "../../atoms/Text/Title";
- import { Container } from "./ContainerSubtitle";
- import { useTheme } from 'styled-components'; 
- import { IoIosAddCircleOutline } from "react-icons/io";
- import Modal from "../../organism/Modals/ModalJobs";
- import { useState } from "react";
+import { Container } from "./Sections";
+import { useTheme } from 'styled-components'; 
+import { IoIosAddCircleOutline } from "react-icons/io";
+import Modal from "../../organism/Modals/ModalJobs";
+import { useState } from "react";
 
-const ContainerSubtitleButton = () => {
+const Section = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -15,7 +16,7 @@ const ContainerSubtitleButton = () => {
   const theme = useTheme();
   return (
     <Container>
-      <Title size="medium">Vacantes</Title>
+      <Title size="large">Vacantes</Title>
       <Button
             onClick={openModal}
             textColor={theme.colors.textWhite}
@@ -23,6 +24,7 @@ const ContainerSubtitleButton = () => {
             bgColor={theme.colors.buttonPurple}
             bgColorHover={theme.colors.buttonPurpleHover}
             icon={<IoIosAddCircleOutline />}
+            width={200}
           >
             Agregar Vacante
           </Button>
@@ -31,4 +33,4 @@ const ContainerSubtitleButton = () => {
   )
 }
 
-export default ContainerSubtitleButton
+export default Section

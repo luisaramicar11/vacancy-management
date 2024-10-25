@@ -1,10 +1,11 @@
+"use client";
 import React from 'react';
 import { ParagraphStyled } from './ParragraphStyles';
 
 interface ParagraphProps {
   children: React.ReactNode;
   size?: 'xsmall' | 'small' | 'medium' | 'large'; 
-  className?: string; // Para estilos adicionales
+  className?: string; 
 }
 
 const Paragraph: React.FC<ParagraphProps> = ({

@@ -1,9 +1,10 @@
+"use client";
 import React from 'react';
 import { TitleStyled } from './TitleStyles';
 
 interface TitleProps {
   children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large'; // Tamaño del título
+  size?: 'small' | 'medium' | 'large' | 'xlarge'; // Tamaño del título
   className?: string; // Para estilos adicionales
 }
 

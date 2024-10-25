@@ -1,7 +1,9 @@
 import styled from 'styled-components';
 
 export const ModalOverlay = styled.div<{ isOpen: boolean }>`
-  display: ${({ isOpen }) => (isOpen ? 'block' : 'none')};
+  display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
@@ -13,7 +15,7 @@ export const ModalOverlay = styled.div<{ isOpen: boolean }>`
 
 export const ModalContent = styled.div`
   background-color: ${({ theme }) => theme.colors.bgWhite};
-  width: 500px;
+  width: 30%;
   padding: 24px;
   margin: 10% auto;
   border-radius: 8px;

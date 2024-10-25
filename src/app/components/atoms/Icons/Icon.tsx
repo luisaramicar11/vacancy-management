@@ -1,3 +1,4 @@
+"use client";
 import {StyledIcon } from "./IconStyles";
 
 interface IconProps {

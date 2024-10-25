@@ -5,7 +5,7 @@ export const NavbarContainer = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0.5rem;
   background-color: transparent;
 `;
 

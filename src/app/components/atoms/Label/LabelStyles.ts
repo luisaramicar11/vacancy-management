@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const LabelFormModal = styled.label`
-  font-size: 0.8rem;
+  font-size: 1rem;
   color: ${({ theme }) => theme.colors.textBlack};
   margin-bottom: 5px;
   display: block;

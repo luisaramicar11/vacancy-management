@@ -5,6 +5,6 @@ export const Container = styled.div`
   width: 100%;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 2rem;
+  padding: 0rem 2rem;
   background-color: transparent;
 `;

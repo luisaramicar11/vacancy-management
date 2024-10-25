@@ -2,7 +2,7 @@ import { IGlobalTheme } from '../../styled';
 
 export const GlobalTheme: IGlobalTheme = {
     colors: {
-        bgGradient: 'linear-gradient(to bottom, rgb(192, 132, 252), rgb(236, 72, 153), rgb(239, 68, 68))',
+        bgGradient: 'linear-gradient(to right, rgb(192, 132, 252), rgb(236, 72, 153), rgb(239, 68, 68))',
         bgWhite: 'rgb(255, 255, 255)',
         bgInactiveTabs: 'rgb(243, 244, 246)',
         bgPaginationButtons: 'rgb(229, 231, 235)',

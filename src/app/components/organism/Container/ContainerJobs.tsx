@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Card from '../../molecules/Cards/CardJob'; 
 import { CardsContainer } from "./ContainerStyles";
@@ -30,7 +31,35 @@ const mockData = [
     description: 'Ensure seamless integration and deployment.',
     status: 'Open',
     company: 'CloudPro'
-  }
+  },
+  {
+    id: 5,
+    title: 'DevOps Engineer',
+    description: 'Ensure seamless integration and deployment.',
+    status: 'Open',
+    company: 'CloudPro'
+  },
+  {
+    id: 6,
+    title: 'DevOps Engineer',
+    description: 'Ensure seamless integration and deployment.',
+    status: 'Open',
+    company: 'CloudPro'
+  },
+  {
+    id: 7,
+    title: 'DevOps Engineer',
+    description: 'Ensure seamless integration and deployment.',
+    status: 'Open',
+    company: 'CloudPro'
+  },
+  {
+    id: 8,
+    title: 'DevOps Engineer',
+    description: 'Ensure seamless integration and deployment.',
+    status: 'Open',
+    company: 'CloudPro'
+  },
 ];
 
 const handleDelete = (id: number) => {

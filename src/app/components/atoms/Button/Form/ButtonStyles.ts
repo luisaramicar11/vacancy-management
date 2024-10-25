@@ -8,13 +8,14 @@ export const StyledButton = styled.button<{
 }>`
   padding: 15px;
   color: ${({ textColor, theme }) => textColor || theme.colors.bgGradient};
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: bold;
   width: 100%;
   background-color: ${({ bgColor, theme }) => bgColor || theme.colors.textWhite};
   border: none;
   text-align: center;
+  margin-top: 1rem;
 
   &:hover {
     background-color: ${({ hoverColor, theme }) => hoverColor || theme.colors.buttonPurpleHover};

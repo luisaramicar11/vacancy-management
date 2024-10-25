@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
-export const StyledButton = styled.button<{ textColor?: string; bgColor?: string;}>`
-  padding: 15px;
+export const StyledButton = styled.button<{ textColor?: string; bgColor?: string;  textHoverColorIcon?: string}>`
+  padding: 8px;
   border-radius: 0.5rem;
   font-size: 0.8rem;
   font-weight: bold;
@@ -16,5 +16,6 @@ export const StyledButton = styled.button<{ textColor?: string; bgColor?: string
   justify-content: center;
   &:hover {
     background-color: ${({ bgColor, theme }) => bgColor || theme.colors.textWhite};
+    color: ${({  textHoverColorIcon, theme }) =>  textHoverColorIcon || theme.colors.textWhite};
   }
 `;

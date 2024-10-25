@@ -1,17 +1,29 @@
+"use client"
 import React, { useState } from 'react';
-import Button from '../../atoms/Button/WithIcon/Button'; 
-import InputSearch from '../../atoms/Input/Search/Input'; 
-import { PiSuitcaseBold } from 'react-icons/pi'; 
-import { LuBuilding2 } from'react-icons/lu';
+import { useRouter } from 'next/navigation'; 
+import Button from '../../atoms/Button/WithIcon/Button';
+import InputSearch from '../../atoms/Input/Search/Input';
+import { PiSuitcaseBold } from 'react-icons/pi';
+import { LuBuilding2 } from 'react-icons/lu';
 import { NavbarContainer, ButtonGroup } from './NavbarStyles';
-import { useTheme } from 'styled-components';  
+import { useTheme } from 'styled-components';
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<'vacantes' | 'companias'>('vacantes');
-  const theme = useTheme(); 
+  const theme = useTheme();
+  const router = useRouter(); 
 
-  const handleVacantesClick = () => setActiveSection('vacantes');
-  const handleCompaniasClick = () => setActiveSection('companias');
+
+  const handleVacantesClick = () => {
+    setActiveSection('vacantes');
+    router.push('/vacants');
+  };
+
+
+  const handleCompaniasClick = () => {
+    setActiveSection('companias');
+    router.push('/companies'); 
+  };
 
   return (
     <>
@@ -51,4 +63,5 @@ const Navbar: React.FC = () => {
 };
 
 export default Navbar;
+
 

@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Card from '../../molecules/Cards/CardCompany'; 
 import { CardsContainer } from "./ContainerStyles";
@@ -23,6 +24,30 @@ const mockData = [
   },
   {
     id: 4,
+    name: 'Compañia',
+    location: 'Cuidad 1.',
+    contact: '5555555'
+  },
+  {
+    id: 5,
+    name: 'Compañia',
+    location: 'Cuidad 1.',
+    contact: '5555555'
+  },
+  {
+    id: 6,
+    name: 'Compañia',
+    location: 'Cuidad 1.',
+    contact: '5555555'
+  },
+  {
+    id: 7,
+    name: 'Compañia',
+    location: 'Cuidad 1.',
+    contact: '5555555'
+  },
+  {
+    id: 8,
     name: 'Compañia',
     location: 'Cuidad 1.',
     contact: '5555555'

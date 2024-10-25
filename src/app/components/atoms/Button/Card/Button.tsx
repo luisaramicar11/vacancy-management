@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import {StyledButton} from './ButtonStyles';
 import Icon from '../../Icons/Icon';
@@ -32,6 +33,7 @@ type ButtonProps = {
         onClick={onClick}
         bgColor={bgColor}
         textColor={textColor}
+        textHoverColorIcon={textHoverColorIcon}
       >
         {children}
         {icon && <Icon textColorIcon={textColorIcon} textHoverColorIcon={textHoverColorIcon}>{icon} </Icon>} 

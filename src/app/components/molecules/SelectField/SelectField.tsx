@@ -1,3 +1,4 @@
+"use client";
 import React from 'react';
 import Select from '../../atoms/Select/Select';
 import LabelForm from '../../atoms/Label/Label';
@@ -11,8 +12,10 @@ interface SelectFieldProps {
   disabled?: boolean;
   name: string;
   required?: boolean;
+  outlineColor?: string; 
   ariaLabel: string;
   options: { value: string; label: string }[];
+  placeholder?: string; // Nueva prop para personalizar el mensaje por defecto
 }
 
 const SelectField: React.FC<SelectFieldProps> = ({
@@ -25,6 +28,8 @@ const SelectField: React.FC<SelectFieldProps> = ({
   required,
   ariaLabel,
   options,
+  outlineColor,
+  placeholder, // Nueva prop para personalizar el mensaje por defecto
 }) => {
   return (
     <SelectFieldContainer>
@@ -38,9 +43,12 @@ const SelectField: React.FC<SelectFieldProps> = ({
         required={required}
         ariaLabel={ariaLabel}
         options={options}
+        outlineColor={outlineColor}
+        placeholder={placeholder} // Pasa el placeholder personalizado aquí
       />
     </SelectFieldContainer>
   );
 };
+
 
 export default SelectField;
