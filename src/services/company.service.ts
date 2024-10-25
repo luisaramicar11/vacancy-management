@@ -1,4 +1,4 @@
-import { ICompany } from "../models/company.model";
+import { ICompany, ICompanyRequest } from "../models/company.model";
 import { HttpClient } from "../utils/client-http";
 
 export class CompanyService {
@@ -8,9 +8,9 @@ export class CompanyService {
         this.httpClient = new HttpClient();
     }
 
-    async findAll(){
+    async findAll({page, size}:ICompanyRequest){
         try {
-            const companies = await this.httpClient.get<ICompany[]>("company")
+            const companies = await this.httpClient.get<ICompany>(`company?page=${page}&size=${size}`)
             return companies;
         } catch (error) {
             console.log(error);

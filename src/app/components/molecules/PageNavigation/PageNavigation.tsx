@@ -5,21 +5,22 @@ import { useTheme } from 'styled-components';
 import { NavigationContainer } from "./PageNavigationStyles";
 import Button from '../../atoms/Button/WithIcon/Button'; 
 import Paragraph from '../../atoms/Parragraph/Parragraph'; 
-
+import { IPageable } from '@/models/pagination.model';
 interface PageNavigationProps {
-  currentPage: number;
+  pagination: IPageable;
   totalPages: number;
   onNext: () => void;
   onPrevious: () => void;
 }
 
-const PageNavigation: React.FC<PageNavigationProps> = ({
-  currentPage,
+const PageNavigation = ({
+  pagination,
   totalPages,
   onNext,
   onPrevious,
-}) => {
+}: PageNavigationProps) => {
   const theme = useTheme(); 
+  const currentPage = pagination.pageNumber + 1;
 
   const isPreviousDisabled = currentPage === 1;
   const isNextDisabled = currentPage === totalPages;

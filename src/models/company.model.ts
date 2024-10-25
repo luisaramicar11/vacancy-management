@@ -22,3 +22,8 @@ export interface IContent {
     contact:  string;
     vacants:  IVacant[];
 }
+
+export interface ICompanyRequest {
+    page: number;
+    size: number;
+}

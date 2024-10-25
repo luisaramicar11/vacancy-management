@@ -2,77 +2,30 @@
 import React from 'react';
 import Card from '../../molecules/Cards/CardCompany'; 
 import { CardsContainer } from "./ContainerStyles";
+import { ICompany } from "../../../../models/company.model";
+interface ICardProps {
+  data: ICompany;
+}
 
-const mockData = [
-  {
-    id: 1,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 2,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 3,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 4,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 5,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 6,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 7,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  },
-  {
-    id: 8,
-    name: 'Compañia',
-    location: 'Cuidad 1.',
-    contact: '5555555'
-  }
-];
-
-const handleDelete = (id: number) => {
-    console.log(`Deleted job with id: ${id}`);
+const handleDelete = () => {
+    console.log(`Deleted job with id: `);
   };
   
-  const handleEdit = (id: number) => {
-    console.log(`Edited job with id: ${id}`);
+  const handleEdit = () => {
+    console.log(`Edited job with id:`);
   };
 
-const CardsGrid: React.FC = () => {
+const CardsGrid = ({data}: ICardProps) => {
   return (
     <CardsContainer>
-      {mockData.map((job) => (
+      {data.content.map((company) => (
         <Card
-          key={job.id}
-          name={job.name}
-          location={job.location}
-          contact={job.contact}
-          onDelete={() => handleDelete(job.id)}  
-          onEdit={() => handleEdit(job.id)}   
+          key={company.id}
+          name={company.name}
+          location={company.location}
+          contact={company.contact}
+          onDelete={() => handleDelete()}  
+          onEdit={() => handleEdit()}   
         />
       ))}
     </CardsContainer>
