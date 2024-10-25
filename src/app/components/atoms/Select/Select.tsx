@@ -16,7 +16,7 @@ interface SelectProps {
   options: { value: string; label: string }[];
   outlineColor?: string;
   hidden?: boolean;
-  placeholder?: string; // Nueva prop para personalizar el mensaje por defecto
+  placeholder?: string; 
 }
 
 const Select: React.FC<SelectProps> = ({
@@ -31,7 +31,7 @@ const Select: React.FC<SelectProps> = ({
   autoComplete,
   options,
   outlineColor,
-  placeholder, // Nueva prop para personalizar el mensaje por defecto
+  placeholder, 
 }) => {
   return (
     <SelectStyled
@@ -46,7 +46,6 @@ const Select: React.FC<SelectProps> = ({
       autoComplete={autoComplete}
       outlineColor={outlineColor}
     >
-      {/* Muestra el placeholder personalizado */}
       <Option value="" disabled="" >
         {placeholder}
       </Option>

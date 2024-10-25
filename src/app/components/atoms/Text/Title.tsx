@@ -4,8 +4,8 @@ import { TitleStyled } from './TitleStyles';
 
 interface TitleProps {
   children: React.ReactNode;
-  size?: 'small' | 'medium' | 'large' | 'xlarge'; // Tamaño del título
-  className?: string; // Para estilos adicionales
+  size?: 'small' | 'medium' | 'large' | 'xlarge'; 
+  className?: string; 
 }
 
 const Title: React.FC<TitleProps> = ({

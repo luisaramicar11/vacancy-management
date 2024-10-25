@@ -15,7 +15,7 @@ interface SelectFieldProps {
   outlineColor?: string; 
   ariaLabel: string;
   options: { value: string; label: string }[];
-  placeholder?: string; // Nueva prop para personalizar el mensaje por defecto
+  placeholder?: string; 
 }
 
 const SelectField: React.FC<SelectFieldProps> = ({
@@ -29,7 +29,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
   ariaLabel,
   options,
   outlineColor,
-  placeholder, // Nueva prop para personalizar el mensaje por defecto
+  placeholder, 
 }) => {
   return (
     <SelectFieldContainer>
@@ -44,7 +44,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
         ariaLabel={ariaLabel}
         options={options}
         outlineColor={outlineColor}
-        placeholder={placeholder} // Pasa el placeholder personalizado aquí
+        placeholder={placeholder} 
       />
     </SelectFieldContainer>
   );

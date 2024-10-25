@@ -9,8 +9,8 @@ type ButtonProps = {
   children: React.ReactNode;
   bgColor?: string;
   textColor?: string;
-  hoverColor?: string; // Nuevo prop para hover
-  focusColor?: string; // Nuevo prop para focus
+  hoverColor?: string; 
+  focusColor?: string; 
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -30,8 +30,8 @@ const Button: React.FC<ButtonProps> = ({
       onClick={onClick}
       bgColor={bgColor}
       textColor={textColor}
-      hoverColor={hoverColor} // Pasamos hover
-      focusColor={focusColor} // Pasamos focus
+      hoverColor={hoverColor} 
+      focusColor={focusColor} 
     >
       {children}
     </StyledButton>

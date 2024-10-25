@@ -3,8 +3,8 @@ import styled from 'styled-components';
 export const StyledButton = styled.button<{
   bgColor?: string;
   textColor?: string;
-  hoverColor?: string;  // Prop para hover
-  focusColor?: string;  // Prop para focus
+  hoverColor?: string;  
+  focusColor?: string;  
 }>`
   padding: 15px;
   color: ${({ textColor, theme }) => textColor || theme.colors.bgGradient};
