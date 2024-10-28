@@ -1,4 +1,4 @@
-import { ICompany, ICompanyRequest } from "../models/company.model";
+import { ICompany, ICompanyRequest, IBasicCompany, IContent} from "../models/company.model";
 import { HttpClient } from "../utils/client-http";
 
 export class CompanyService {
@@ -18,9 +18,9 @@ export class CompanyService {
         }
     }
 
-    async create(company: ICompany){
+    async create(company: IBasicCompany){
         try {
-            const newCompany = await this.httpClient.post<ICompany, ICompany>("company", company)
+            const newCompany = await this.httpClient.post< IContent, IBasicCompany>("company", company)
             return newCompany;
         } catch (error) {
             console.log(error);
@@ -28,9 +28,9 @@ export class CompanyService {
         }
     }
 
-    async update(id: string, company: ICompany){
+    async update(id: string, company: IBasicCompany){
         try {
-            const updatedCompany = await this.httpClient.put<ICompany, ICompany>(`company/${id}`, company)
+            const updatedCompany = await this.httpClient.put<IContent, IBasicCompany>(`company/${id}`, company)
             return updatedCompany;
         } catch (error) {
             console.log(error);

@@ -10,7 +10,7 @@ export class VacantService {
 
     async findAll(){
         try {
-            const vacants = await this.httpClient.get<IVacant[]>("vacants")
+            const vacants = await this.httpClient.get<IVacant>("vacants")
             return vacants;
         } catch (error) {
             console.log(error);

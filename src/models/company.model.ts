@@ -1,6 +1,11 @@
-import { IVacant } from "./vacant.model";
 import { IPageable, ISort } from "./pagination.model";
 
+interface IVacant {
+    id: string;
+    title: string;
+    description: string;
+    status: string;
+}
 export interface ICompany {
     content:          IContent[];
     pageable:         IPageable;
@@ -21,6 +26,12 @@ export interface IContent {
     location: string;
     contact:  string;
     vacants:  IVacant[];
+}
+
+export interface IBasicCompany {
+    name:     string;
+    location: string;
+    contact:  string;
 }
 
 export interface ICompanyRequest {

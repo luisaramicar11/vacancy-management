@@ -1,4 +1,4 @@
-const defaultBaseUrl = "http://192.168.88.153/api/v1";
+const defaultBaseUrl = "http://vacantsbackendgates-production.up.railway.app/api/v1";
 
 export class HttpClient {
     private baseUrl: string;
@@ -36,7 +36,7 @@ export class HttpClient {
         return await this.handleResponse(response);
     }
 
-    async delete<T>(url: string): Promise<T> {
+    async delete(url: string): Promise<void> {
         const headers = await this.getHeader();
         const response = await fetch(`${this.baseUrl}/${url}`, {
             headers,
