@@ -16,7 +16,7 @@ const handleEdit = () => {
   console.log(`Edited job with id:`);
 };
 
-const CardsGrid: React.FC = ({data}: ICardProps) => {
+const CardsGrid = ({data}: ICardProps) => {
   return (
     <CardsContainer>
       {data.content.map((job) => (

@@ -1,20 +1,41 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Title from "../../atoms/Text/Title";
 import InputField from "../../molecules/InputField/InputField";
 import Button from "../../atoms/Button/Form/Button";
 import { FormContainer } from "./FormStyles";
 import { useTheme } from 'styled-components';
+import { IBasicCompany, IContent } from "../../../../models/company.model";
+import {  CompanyService } from "../../../../services/company.service";
+import { useRouter } from "next/navigation";
+interface AddCompanyFormProps {
+  initialData?: IContent;
+  onClose: () => void;
+}
 
-const initialForm = {
+const initialForm: IBasicCompany = {
   name: "",
   location: "",
   contact: "",
 };
 
-const AddCompanyForm: React.FC = () => {
-  const [form, setForm] = useState(initialForm);
+const AddCompanyForm = ({initialData, onClose}: AddCompanyFormProps) => {
+  const [form, setForm] = useState(initialData || initialForm);
+  const [error, setError ] = useState<string>("");
+  console.log(error);
   const theme = useTheme();
+  const router = useRouter();
+  const companyService = new CompanyService();
+
+  useEffect(()=>{
+    if(initialData){
+      setForm({
+        name: initialData.name,
+        location: initialData.location,
+        contact: initialData.contact,
+      });
+    }
+  }, [initialData])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({
@@ -23,14 +44,30 @@ const AddCompanyForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulario:", form);
+    setError("");
+    try {
+      if(initialData){
+        await companyService.update(initialData.id, form);
+        console.log("Company updated successfully");
+      }else{
+        await companyService.create(form);
+        console.log("Company created successfully");
+      }
+      router.refresh();
+      setForm(initialForm);
+      onClose();
+    } catch (error) {
+      setError("Error al crear la compañía");
+      console.log(error);
+    }
+    
   };
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <Title size="large">Agregar Compañia</Title>
+      <Title size="large">{initialData ? "Editar compañía": "Agregar Compañía"}</Title>
 
       <InputField
         labelText="Nombre"
@@ -75,10 +112,10 @@ const AddCompanyForm: React.FC = () => {
         hoverColor={theme.colors.buttonPinkHover}
         focusColor={theme.colors.buttonFocusPink}
       >
-        Agregar
+        {initialData ? "Editar" : "Agregar"}
       </Button>
     </FormContainer>
   );
-};
+}
 
 export default AddCompanyForm;

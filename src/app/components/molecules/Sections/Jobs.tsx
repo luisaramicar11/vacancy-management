@@ -8,6 +8,7 @@ import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "../../organism/Modals/ModalJobs";
 import { useState } from "react";
 
+
 const Section = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 

@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import Section from '../molecules/Sections/Companies';
 import CardsGrid from '../organism/Container/ContainerCompany';
 import PageNavigation from '../molecules/PageNavigation/PageNavigation';

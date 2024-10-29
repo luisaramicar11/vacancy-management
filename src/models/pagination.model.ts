@@ -12,3 +12,8 @@ export interface ISort {
     unsorted: boolean;
     empty:    boolean;
 }
+
+export interface IPaginationRequest {
+    page: number;
+    size: number;
+}

@@ -2,21 +2,46 @@
 import React from 'react';
 import Card from '../../molecules/Cards/CardCompany'; 
 import { CardsContainer } from "./ContainerStyles";
-import { ICompany } from "../../../../models/company.model";
+import { ICompany, IContent } from "../../../../models/company.model";
+import { useState } from "react";
+import  Modal  from "../Modals/ModalCompany"
+import { CompanyService } from '@/services/company.service';
+import { useRouter } from "next/navigation";
 interface ICardProps {
   data: ICompany;
 }
 
-const handleDelete = () => {
-    console.log(`Deleted job with id: `);
-  };
-  
-  const handleEdit = () => {
-    console.log(`Edited job with id:`);
-  };
-
 const CardsGrid = ({data}: ICardProps) => {
+  const [ isModalOpen, setIsModalOpen] = useState(false);
+  const [ selectedCompany, setSelectedCompany] = useState<IContent | null>(null);
+
+  const companyService = new CompanyService();
+  const router = useRouter();
+  
+const handleDelete = async (id: string) => {
+  console.log(id)
+  const isConfirmed = confirm("¿Estas seguro que desear borrar la compañia?");
+    if(!isConfirmed) return;
+  try {
+    await companyService.destroy(id);
+    console.log("Compañia eliminada")
+    router.refresh();
+  } catch (error) {
+    console.error("Error", error);
+  }
+};
+
+const handleEdit = (company: IContent) => {
+  setSelectedCompany(company)
+  setIsModalOpen(true);
+};
+
+const handleCloseModal = () => {
+  setIsModalOpen(false);
+  setSelectedCompany(null);
+};
   return (
+    <>
     <CardsContainer>
       {data.content.map((company) => (
         <Card
@@ -24,11 +49,14 @@ const CardsGrid = ({data}: ICardProps) => {
           name={company.name}
           location={company.location}
           contact={company.contact}
-          onDelete={() => handleDelete()}  
-          onEdit={() => handleEdit()}   
+          onDelete={() => handleDelete(company.id)}  
+          onEdit={() => handleEdit(company)}   
         />
       ))}
     </CardsContainer>
+    <Modal isOpen={isModalOpen} onClose={handleCloseModal} company={selectedCompany} />
+    </>
+    
   );
 };
 

@@ -1,4 +1,5 @@
-import { IVacant } from "../models/vacant.model";
+import { IVacant, IBasicVacant, IContent } from "../models/vacant.model";
+import { IPaginationRequest } from "@/models/pagination.model";
 import { HttpClient } from "../utils/client-http";
 
 export class VacantService {
@@ -8,9 +9,9 @@ export class VacantService {
         this.httpClient = new HttpClient();
     }
 
-    async findAll(){
+    async findAll({page, size}: IPaginationRequest){
         try {
-            const vacants = await this.httpClient.get<IVacant>("vacants")
+            const vacants = await this.httpClient.get<IVacant>(`vacants?page=${page}&size=${size}`)
             return vacants;
         } catch (error) {
             console.log(error);
@@ -18,9 +19,9 @@ export class VacantService {
         }
     }
 
-    async create(vacant: IVacant){
+    async create(vacant: IBasicVacant){
         try {
-            const newVacant = await this.httpClient.post<IVacant, IVacant>("vacants", vacant)
+            const newVacant = await this.httpClient.post<IContent, IBasicVacant>("vacants", vacant)
             return newVacant;
         } catch (error) {
             console.log(error);
@@ -28,9 +29,9 @@ export class VacantService {
         }
     }
 
-    async update(id: string, vacant: IVacant){
+    async update(id: string, vacant: IBasicVacant){
         try {
-            const updatedVacant = await this.httpClient.put<IVacant, IVacant>(`vacants/${id}`, vacant)
+            const updatedVacant = await this.httpClient.put<IContent, IBasicVacant>(`vacants/${id}`, vacant)
             return updatedVacant;
         } catch (error) {
             console.log(error);

@@ -4,34 +4,50 @@ import Section from '../molecules/Sections/Jobs';
 import CardsGrid from '../organism/Container/ContainerJobs';
 import PageNavigation from '../molecules/PageNavigation/PageNavigation';
 import { TemplateContainer, ContentWrapper } from './TemplatesForPages';
+import { IVacant } from "../../../models/vacant.model";
+import { IPageable } from "../../../models/pagination.model"
+import { useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+interface IJobsProps {
+  data: IVacant,
+  pagination: IPageable
+}
 
-const JobManagmentTemplate: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState<number>(1);
-  const totalPages = 2; 
+const JobManagmentTemplate = ({data, pagination}: IJobsProps) => {
+const totalPages = data.totalPages;
 
-  const handleNext = () => {
-    if (currentPage < totalPages) {
-      setCurrentPage(currentPage + 1);
+const searchParams = useSearchParams();
+const router = useRouter();
+
+  const handleNext = (nextPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if(nextPage <= totalPages){
+      params.set('page', nextPage.toString());
+      router.push(`?${params.toString()}`);
     }
   };
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
-      setCurrentPage(currentPage - 1);
+  const handlePrevious = (backPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    if(backPage > 0){
+      params.set('page', backPage.toString());
+      router.push(`?${params.toString()}`);
     }
   };
+
+  const currentPage = pagination.pageNumber + 1;
 
   return (
     <TemplateContainer>
       <ContentWrapper>
       <Section />
-      <CardsGrid />
+      <CardsGrid data= {data}/>
       </ContentWrapper>
       <PageNavigation
-        currentPage={currentPage}
+        pagination={pagination}
         totalPages={totalPages}
-        onNext={handleNext}
-        onPrevious={handlePrevious}
+        onNext={()=>handleNext(currentPage+1)}
+        onPrevious={()=>handlePrevious(currentPage-1)}
       />
     </TemplateContainer>
   );
