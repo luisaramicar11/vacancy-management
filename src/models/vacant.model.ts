@@ -28,7 +28,7 @@ export interface IVacant {
 }
 
 export interface IContentVacant {
-    id:          number;
+    id:          string;
     title:       string;
     description: string;
     status:      string;

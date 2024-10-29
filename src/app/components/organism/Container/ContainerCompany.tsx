@@ -20,7 +20,7 @@ const CardsGrid = ({data}: ICardProps) => {
   
 const handleDelete = async (id: string) => {
   console.log(id)
-  const isConfirmed = confirm("¿Estas seguro que desear borrar la compañia?");
+  const isConfirmed = confirm("¿Estás seguro que deseas borrar la compañia?");
     if(!isConfirmed) return;
   try {
     await companyService.destroy(id);
