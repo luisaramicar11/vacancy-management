@@ -9,7 +9,7 @@ import { IBasicCompany, IContent } from "../../../../models/company.model";
 import {  CompanyService } from "../../../../services/company.service";
 import { useRouter } from "next/navigation";
 interface AddCompanyFormProps {
-  initialData?: IContent;
+  initialData?: IContent | null;
   onClose: () => void;
 }
 

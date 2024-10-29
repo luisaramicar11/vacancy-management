@@ -1,23 +1,37 @@
 "use client";
-import React from 'react';
+import React, {useState} from 'react';
 import Card from '../../molecules/Cards/CardJob'; 
 import { CardsContainer } from "./ContainerStyles";
-import { IVacant } from "../../../../models/vacant.model";
-
+import { IContentVacant, IVacant } from "../../../../models/vacant.model";
+//import {  VacantService } from "../../../../services/vacants.service"
+import Modal from "../Modals/ModalJobs"
 interface ICardProps {
   data: IVacant;
 }
 
-const handleDelete = () => {
-  console.log(`Deleted job with id: `);
-};
-
-const handleEdit = () => {
-  console.log(`Edited job with id:`);
-};
-
 const CardsGrid = ({data}: ICardProps) => {
+  const [ isModalOpen, setIsModalOpen] = useState(false);
+  const [ selectVacant, setSelectVacant] = useState<IContentVacant | null>(null);
+
+  //const vacantService = new VacantService();
+  //const router = useRouter();
+
+  const handleDelete = () => {
+    console.log(`Deleted job with id: `);
+  };
+  
+  const handleEdit = (job: IContentVacant) => {
+    setSelectVacant(job);
+    setIsModalOpen(true);
+  };
+  
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectVacant(null);
+  };
+
   return (
+    <>
     <CardsContainer>
       {data.content.map((job) => (
         <Card
@@ -27,10 +41,13 @@ const CardsGrid = ({data}: ICardProps) => {
           status={job.status}
           company={job.company.name}
           onDelete={() => handleDelete()}  
-          onEdit={() => handleEdit()}   
+          onEdit={() => handleEdit(job)}   
         />
       ))}
     </CardsContainer>
+    <Modal isOpen={isModalOpen} onClose={handleCloseModal} vacant={selectVacant} />
+    </>
+    
   );
 };
 

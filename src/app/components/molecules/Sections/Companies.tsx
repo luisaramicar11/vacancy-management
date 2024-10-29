@@ -7,8 +7,13 @@ import { useTheme } from 'styled-components';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "../../organism/Modals/ModalCompany";
 import { useState } from "react";
+import { IContent } from "../../../../models/company.model";
 
-const Section = () => {
+interface sectionProps {
+  company: IContent; // Define the type of the company data here, e.g., ICompany from the company.model file
+}
+
+const Section = ({company}: sectionProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -28,7 +33,7 @@ const Section = () => {
           >
             Agregar Compañia
           </Button>
-          <Modal  isOpen={isModalOpen} onClose={closeModal}/>
+          <Modal  isOpen={isModalOpen} onClose={closeModal} company={company}/>
     </Container>
   )
 }

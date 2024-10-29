@@ -7,9 +7,13 @@ import { useTheme } from 'styled-components';
 import { IoIosAddCircleOutline } from "react-icons/io";
 import Modal from "../../organism/Modals/ModalJobs";
 import { useState } from "react";
+import { IContentVacant } from '@/models/vacant.model';
 
+interface sectionProps {
+  vacant: IContentVacant;
+}
 
-const Section = () => {
+const Section = ({vacant}: sectionProps) => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const openModal = () => setIsModalOpen(true);
@@ -29,7 +33,7 @@ const Section = () => {
           >
             Agregar Vacante
           </Button>
-          <Modal  isOpen={isModalOpen} onClose={closeModal}/>
+          <Modal  isOpen={isModalOpen} onClose={closeModal} vacant={vacant}/>
     </Container>
   )
 }

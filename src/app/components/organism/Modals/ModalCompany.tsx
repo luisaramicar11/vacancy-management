@@ -15,7 +15,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, company }) => {
     <ModalOverlay isOpen={isOpen}>
       <ModalContent>
         <CloseButton onClick={onClose} iconColor="#000" />
-        {company && <AddCompanyForm initialData = {company} onClose={onClose}/>}
+        <AddCompanyForm initialData = {company} onClose={onClose}/>
       </ModalContent>
     </ModalOverlay>
   );

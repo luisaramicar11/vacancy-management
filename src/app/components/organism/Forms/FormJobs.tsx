@@ -7,11 +7,16 @@ import SelectField from "../../molecules/SelectField/SelectField";
 import Button from "../../atoms/Button/Form/Button";
 import { FormContainer } from "./FormStyles";
 import { useTheme } from 'styled-components';
-import {  IBasicVacant } from "../../../../models/vacant.model";
+import {  IBasicVacant, IContentVacant } from "../../../../models/vacant.model";
 import { useRouter } from "next/navigation";
 import { IContent } from "../../../../models/company.model"
 import { CompanyService} from "../../../../services/company.service";
-import { VacantService } from "../../../../services/vacants.service"
+import { VacantService } from "../../../../services/vacants.service";
+
+interface AddJobFormProps {
+  initialData?: IContentVacant | null;
+  onClose: () => void;
+}
 
 const initialForm: IBasicVacant = {
   title: "",
@@ -20,7 +25,7 @@ const initialForm: IBasicVacant = {
   companyId: "",
 };
 
-const AddJobForm = () => {
+const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState<string>("");
   const [ companies, setCompanies] = useState<IContent[]>([])
@@ -32,6 +37,14 @@ const AddJobForm = () => {
   const vacantService = new VacantService();
   const companyService = new CompanyService();
    useEffect(()=>{
+    if(initialData){
+      setForm({
+        title: initialData.title,
+        description: initialData.description,
+        status: initialData.status,
+        companyId: (initialData.id).toString()
+      });
+    }  
     const fetchCompanies = async () => {
       try {
         const response = await companyService.findAll();
@@ -43,9 +56,7 @@ const AddJobForm = () => {
       
     }
     fetchCompanies();
-  }, []);
-
-  console.log(companies)
+  }, [initialData]);
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -62,18 +73,25 @@ const AddJobForm = () => {
     e.preventDefault();
     setError("");
     try {
-      await vacantService.create(form)
-      console.log("Vacant created")
+      if(initialData){
+        await vacantService.update((initialData.id).toString(), form)
+        console.log("Vacant updated")
+      }else{
+        await vacantService.create(form)
+        console.log("Vacant created")
+      }
       router.refresh();
       setForm(initialForm)
+      onClose();
     } catch (error) {
+      setError("Error al crear la vacante")
       console.log(error)
     }
   };
 
   return (
     <FormContainer onSubmit={handleSubmit}>
-      <Title size="large">Agregar Vacante</Title>
+      <Title size="large">{initialData ? "Editar Vacante " : "Agregar Vacante"}</Title>
 
       <InputField
         labelText="Título"

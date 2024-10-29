@@ -14,7 +14,7 @@ export interface IBasicVacant {
     companyId:   string;
 }
 export interface IVacant {
-    content:          IContent[];
+    content:          IContentVacant[];
     pageable:         IPageable;
     totalPages:       number;
     totalElements:    number;
@@ -27,7 +27,7 @@ export interface IVacant {
     empty:            boolean;
 }
 
-export interface IContent {
+export interface IContentVacant {
     id:          number;
     title:       string;
     description: string;
