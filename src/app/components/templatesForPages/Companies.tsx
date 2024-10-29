@@ -20,10 +20,10 @@ const CompanyManagmentTemplate = ({data, pagination}: ICompaniesProps) => {
   const router = useRouter();
 
   const handleNext = (nextPage: number) => {
-    const params = new URLSearchParams(searchParams.toString());
+    const params = new URLSearchParams(searchParams.toString()); // de url pasa a objeto
     if(nextPage <= totalPages){
       params.set('page', nextPage.toString());
-      router.push(`?${params.toString()}`);
+      router.push(`?${params.toString()}`); // de objeto pasa a string
     }
   };
 

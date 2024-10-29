@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Title from "../../atoms/Text/Title";
 import InputField from "../../molecules/InputField/InputField";
 import TextAreaField from "../../molecules/TextAreaField/TextAreaField";
@@ -7,17 +7,45 @@ import SelectField from "../../molecules/SelectField/SelectField";
 import Button from "../../atoms/Button/Form/Button";
 import { FormContainer } from "./FormStyles";
 import { useTheme } from 'styled-components';
+import {  IBasicVacant } from "../../../../models/vacant.model";
+import { useRouter } from "next/navigation";
+import { IContent } from "../../../../models/company.model"
+import { CompanyService} from "../../../../services/company.service";
+import { VacantService } from "../../../../services/vacants.service"
 
-const initialForm = {
+const initialForm: IBasicVacant = {
   title: "",
   description: "",
-  state: "",
-  company: "",
+  status: "",
+  companyId: "",
 };
 
-const AddJobForm: React.FC = () => {
+const AddJobForm = () => {
   const [form, setForm] = useState(initialForm);
-  const theme = useTheme();  
+  const [error, setError] = useState<string>("");
+  const [ companies, setCompanies] = useState<IContent[]>([])
+
+  console.log(error)
+  const theme = useTheme(); 
+  const router = useRouter();
+
+  const vacantService = new VacantService();
+  const companyService = new CompanyService();
+   useEffect(()=>{
+    const fetchCompanies = async () => {
+      try {
+        const response = await companyService.findAll();
+        setCompanies(response || []);
+      } catch (error) {
+        console.log(error);
+        setCompanies([])
+      }
+      
+    }
+    fetchCompanies();
+  }, []);
+
+  console.log(companies)
 
   const handleChange = (
     e: React.ChangeEvent<
@@ -30,9 +58,17 @@ const AddJobForm: React.FC = () => {
     });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Formulario:", form);
+    setError("");
+    try {
+      await vacantService.create(form)
+      console.log("Vacant created")
+      router.refresh();
+      setForm(initialForm)
+    } catch (error) {
+      console.log(error)
+    }
   };
 
   return (
@@ -65,34 +101,33 @@ const AddJobForm: React.FC = () => {
 
       <SelectField
         labelText="Estado"
-        id="state"
-        value={form.state}
+        id="status"
         onChange={handleChange}
-        name="state"
+        name="status"
         required
         ariaLabel="Seleccione el estado de la vacante"
         placeholder="Selecciona el estado de la vacante" 
+        value={form.status}
         options={[
-          { value: "OPEN", label: "OPEN" },
-          { value: "CLOSE", label: "CLOSE" },
+          { value: "ACTIVE", label: "ACTIVE" },
+          { value: "INACTIVE", label: "INACTIVE" },
         ]}
         outlineColor={theme.colors.buttonPurple}
       />
 
       <SelectField
         labelText="Compañía"
-        id="company"
-        value={form.company}
+        id="companyId"
         onChange={handleChange}
-        name="company"
+        name="companyId"
         required
         placeholder="Seleccione la compañía"
         ariaLabel="Seleccione la compañía"
-        options={[
-          { value: "company1", label: "Compañía 1" },
-          { value: "company2", label: "Compañía 2" },
-          { value: "company3", label: "Compañía 3" },
-        ]}
+        value={form.companyId}
+        options={companies.length > 0 ? companies.map(company => ({
+          value: company.id,
+          label: company.name,
+        })): []}
         outlineColor={theme.colors.buttonPurple}
       />
 

@@ -8,9 +8,19 @@ export class CompanyService {
         this.httpClient = new HttpClient();
     }
 
-    async findAll({page, size}:ICompanyRequest){
+    async findAllWithPagination({page, size}:ICompanyRequest){
         try {
             const companies = await this.httpClient.get<ICompany>(`company?page=${page}&size=${size}`)
+            return companies;
+        } catch (error) {
+            console.log(error);
+            throw new Error("Error al obtener las compañías");
+        }
+    }
+
+    async findAll(){
+        try {
+            const companies = await this.httpClient.get<IContent[]>(`company/all`)
             return companies;
         } catch (error) {
             console.log(error);
