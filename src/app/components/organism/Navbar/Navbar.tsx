@@ -1,6 +1,6 @@
 "use client"
-import React, { useState } from 'react';
-import { useRouter, useSearchParams } from 'next/navigation'; 
+import React, { useState, useEffect } from 'react';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'; 
 import Button from '../../atoms/Button/WithIcon/Button';
 import InputSearch from '../../atoms/Input/Search/Input';
 import { PiSuitcaseBold } from 'react-icons/pi';
@@ -9,22 +9,32 @@ import { NavbarContainer, ButtonGroup } from './NavbarStyles';
 import { useTheme } from 'styled-components';
 
 const Navbar: React.FC = () => {
-  const [activeSection, setActiveSection] = useState<'vacantes' | 'companias'>('vacantes');
+  
+  const [initialPath, setInitialPath] = useState<string>(); 
+  const [activeSection, setActiveSection] = useState<string>(`${initialPath}`);
   const [searchTerm, setSearchTerm] = useState("");
-
+  const path = usePathname();
   const searchParams = useSearchParams();
   const theme = useTheme();
   const router = useRouter(); 
 
+  useEffect(() => {
+    setInitialPath(path);
+    setActiveSection(path.replace('/', ''));
+  }, [path]);
+  // if (path === "/companies") {
+  //   setInitialPath('companias')
+  // } else if (path === "/vacants"){
+  //   setInitialPath('vacantes')
+  // }
 
   const handleVacantesClick = () => {
-    setActiveSection('vacantes');
+    setActiveSection('vacants');
     router.push('/vacants');
   };
 
-
   const handleCompaniasClick = () => {
-    setActiveSection('companias');
+    setActiveSection('companies');
     router.push('/companies'); 
   };
 
@@ -45,9 +55,9 @@ const Navbar: React.FC = () => {
         <ButtonGroup>
           <Button
             onClick={handleVacantesClick}
-            textColor={activeSection === 'vacantes' ? theme.colors.textWhite : theme.colors.textMediumGray}
-            textColorIcon={activeSection === 'vacantes' ? theme.colors.textWhite : theme.colors.textMediumGray}
-            bgColor={activeSection === 'vacantes' ? theme.colors.buttonPurple : theme.colors.bgInactiveTabs}
+            textColor={activeSection === 'vacants' ? theme.colors.textWhite : theme.colors.textMediumGray}
+            textColorIcon={activeSection === 'vacants' ? theme.colors.textWhite : theme.colors.textMediumGray}
+            bgColor={activeSection === 'vacants' ? theme.colors.buttonPurple : theme.colors.bgInactiveTabs}
             bgColorHover={theme.colors.buttonPurpleHover}
             icon={<PiSuitcaseBold />}
           >
@@ -55,9 +65,9 @@ const Navbar: React.FC = () => {
           </Button>
           <Button
             onClick={handleCompaniasClick}
-            textColor={activeSection === 'companias' ? theme.colors.textWhite : theme.colors.textMediumGray}
-            textColorIcon={activeSection === 'companias' ? theme.colors.textWhite : theme.colors.textMediumGray}
-            bgColor={activeSection === 'companias' ? theme.colors.buttonPink : theme.colors.bgInactiveTabs}
+            textColor={activeSection === 'companies' ? theme.colors.textWhite : theme.colors.textMediumGray}
+            textColorIcon={activeSection === 'companies' ? theme.colors.textWhite : theme.colors.textMediumGray}
+            bgColor={activeSection === 'companies' ? theme.colors.buttonPink : theme.colors.bgInactiveTabs}
             bgColorHover={theme.colors.buttonPinkHover}
             icon={<LuBuilding2 />}
           >

@@ -19,7 +19,6 @@ const CardsGrid = ({data}: ICardProps) => {
   const router = useRouter();
   
 const handleDelete = async (id: string) => {
-  console.log(id)
   const isConfirmed = confirm("¿Estás seguro que deseas borrar la compañia?");
     if(!isConfirmed) return;
   try {
