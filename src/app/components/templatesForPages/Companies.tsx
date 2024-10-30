@@ -40,7 +40,7 @@ const CompanyManagmentTemplate = ({data, pagination}: ICompaniesProps) => {
   return (
     <TemplateContainer>
       <ContentWrapper>
-        <Section/>
+        <Section company={null}/>
         <CardsGrid data={data}/>
       </ContentWrapper>
       <PageNavigation

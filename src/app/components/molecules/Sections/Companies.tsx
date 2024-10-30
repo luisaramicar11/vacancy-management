@@ -10,7 +10,7 @@ import { useState } from "react";
 import { IContent } from "../../../../models/company.model";
 
 interface sectionProps {
-  company: IContent; 
+  company: IContent | null
 }
 
 const Section = ({company}: sectionProps) => {

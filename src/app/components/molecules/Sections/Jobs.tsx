@@ -10,7 +10,7 @@ import { useState } from "react";
 import { IContentVacant } from '@/models/vacant.model';
 
 interface sectionProps {
-  vacant: IContentVacant;
+  vacant: IContentVacant | null;
 }
 
 const Section = ({vacant}: sectionProps) => {

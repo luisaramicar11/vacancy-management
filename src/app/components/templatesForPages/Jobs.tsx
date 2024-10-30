@@ -40,7 +40,7 @@ const router = useRouter();
   return (
     <TemplateContainer>
       <ContentWrapper>
-      <Section/>
+      <Section vacant = {null}/>
       <CardsGrid data= {data}/>
       </ContentWrapper>
       <PageNavigation
