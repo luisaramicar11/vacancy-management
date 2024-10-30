@@ -8,14 +8,13 @@ import { IVacant } from "../../../models/vacant.model";
 import { IPageable } from "../../../models/pagination.model"
 import { useSearchParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
-import Loader from '../../loading';
+
 interface IJobsProps {
   data: IVacant,
   pagination: IPageable,
-  loading: boolean
 }
 
-const JobManagmentTemplate = ({data, pagination, loading}: IJobsProps) => {
+const JobManagmentTemplate = ({data, pagination}: IJobsProps) => {
 const totalPages = data.totalPages;
 
 const searchParams = useSearchParams();
@@ -38,10 +37,6 @@ const router = useRouter();
   };
 
   const currentPage = pagination.pageNumber + 1;
-
-  if(loading){
-    return <Loader/>
-  }
 
   return (
     <TemplateContainer>

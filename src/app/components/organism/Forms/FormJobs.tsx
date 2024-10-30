@@ -5,7 +5,7 @@ import InputField from "../../molecules/InputField/InputField";
 import TextAreaField from "../../molecules/TextAreaField/TextAreaField";
 import SelectField from "../../molecules/SelectField/SelectField";
 import Button from "../../atoms/Button/Form/Button";
-import { FormContainer } from "./FormStyles";
+import { FormContainer, DropdownContainer,  DropdownItem, Div } from "./FormStyles";
 import { useTheme } from 'styled-components';
 import {  IBasicVacant, IContentVacant } from "../../../../models/vacant.model";
 import { useRouter } from "next/navigation";
@@ -28,7 +28,9 @@ const initialForm: IBasicVacant = {
 const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
   const [form, setForm] = useState(initialForm);
   const [error, setError] = useState<string>("");
-  const [ companies, setCompanies] = useState<IContent[]>([])
+  const [ companies, setCompanies] = useState<IContent[]>([]);
+  const [filteredCompanies, setFilteredCompanies] = useState<IContent[]>([]);
+  const [ companyInput, setCompanyInput] = useState<string>("");
 
   console.log(error)
   const theme = useTheme(); 
@@ -49,6 +51,7 @@ const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
       try {
         const response = await companyService.findAll();
         setCompanies(response || []);
+        setFilteredCompanies(response || []);
       } catch (error) {
         console.log(error);
         setCompanies([])
@@ -69,16 +72,28 @@ const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
     });
   };
 
+  const handleCompanyInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+    setCompanyInput(input);
+    setFilteredCompanies(companies.filter((company) => company.name.toLowerCase().includes(input.toLowerCase())));
+  }
+
+  const handleCompanySelect = (company: IContent) => {
+    setForm({...form, companyId: company.id });
+    setCompanyInput(company.name);
+    setFilteredCompanies([]);
+  }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
     try {
       if(initialData){
         await vacantService.update((initialData.id).toString(), form)
-        console.log("Vacant updated")
+        console.log("Vacante actualizada")
       }else{
         await vacantService.create(form)
-        console.log("Vacant created")
+        console.log("Vacante creada")
       }
       router.refresh();
       setForm(initialForm)
@@ -126,28 +141,39 @@ const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
         ariaLabel="Seleccione el estado de la vacante"
         placeholder="Selecciona el estado de la vacante" 
         value={form.status}
-        options={[
+        options={ initialData ? [
           { value: "ACTIVE", label: "ACTIVE" },
           { value: "INACTIVE", label: "INACTIVE" },
-        ]}
+        ]: [{ value: "ACTIVE", label: "ACTIVE" }]
+      }
         outlineColor={theme.colors.buttonPurple}
       />
-
-      <SelectField
+      <Div>
+      <InputField
         labelText="Compañía"
         id="companyId"
-        onChange={handleChange}
-        name="companyId"
+        type="text"
+        onChange={handleCompanyInputChange}
+        name={companyInput}
         required
         placeholder="Seleccione la compañía"
-        ariaLabel="Seleccione la compañía"
-        value={form.companyId}
-        options={companies.length > 0 ? companies.map(company => ({
-          value: company.id,
-          label: company.name,
-        })): []}
+        value={companyInput}
         outlineColor={theme.colors.buttonPurple}
       />
+      {companyInput && filteredCompanies.length > 0 && (
+          <DropdownContainer>
+            {filteredCompanies.map((company) => (
+              <DropdownItem
+                key={company.id}
+                onClick={() => handleCompanySelect(company)}
+              >
+                {company.name}
+              </DropdownItem>
+            ))}
+          </DropdownContainer>
+        )}
+      </Div>
+      
 
       <Button
         type="submit"
@@ -156,7 +182,7 @@ const AddJobForm = ({initialData, onClose}: AddJobFormProps) => {
         hoverColor={theme.colors.buttonPurpleHover}
         focusColor= {theme.colors.buttonFocusPurple}
       >
-        Agregar
+        {initialData ? "Editar" : "Agregar"}
       </Button>
     </FormContainer>
   );

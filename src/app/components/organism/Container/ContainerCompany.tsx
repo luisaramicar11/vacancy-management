@@ -18,17 +18,17 @@ const CardsGrid = ({data}: ICardProps) => {
   const companyService = new CompanyService();
   const router = useRouter();
   
-const handleDelete = async (id: string) => {
-  const isConfirmed = confirm("¿Estás seguro que deseas borrar la compañia?");
+  const handleDelete = async (id: string) => {
+    const isConfirmed = confirm("¿Estás seguro que deseas borrar la compañía?");
     if(!isConfirmed) return;
-  try {
-    await companyService.destroy(id);
-    console.log("Compañia eliminada")
-    router.refresh();
-  } catch (error) {
-    console.error("Error", error);
-  }
-};
+    try {
+      await companyService.destroy(id);
+      console.log("Compañia eliminada");
+      router.refresh();
+    } catch (error) {
+      console.log("Error al eliminar la compañía", error);
+    }
+  };
 
 const handleEdit = (company: IContent) => {
   setSelectedCompany(company)

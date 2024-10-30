@@ -8,6 +8,7 @@ interface ModalProps {
   isOpen: boolean;
   onClose: () => void;
   company: IContent | null;
+  
 }
 
 const Modal: React.FC<ModalProps> = ({ isOpen, onClose, company }) => {

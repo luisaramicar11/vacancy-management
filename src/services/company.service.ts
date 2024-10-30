@@ -30,7 +30,7 @@ export class CompanyService {
 
     async create(company: IBasicCompany){
         try {
-            const newCompany = await this.httpClient.post< IContent, IBasicCompany>("company", company)
+            const newCompany = await this.httpClient.post< IContent, IBasicCompany>(`company`, company)
             return newCompany;
         } catch (error) {
             console.log(error);

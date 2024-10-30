@@ -22,6 +22,7 @@ const initialForm: IBasicCompany = {
 const AddCompanyForm = ({initialData, onClose}: AddCompanyFormProps) => {
   const [form, setForm] = useState(initialData || initialForm);
   const [error, setError ] = useState<string>("");
+
   console.log(error);
   const theme = useTheme();
   const router = useRouter();
@@ -32,7 +33,7 @@ const AddCompanyForm = ({initialData, onClose}: AddCompanyFormProps) => {
       setForm({
         name: initialData.name,
         location: initialData.location,
-        contact: initialData.contact,
+        contact: initialData.contact
       });
     }
   }, [initialData])
@@ -49,11 +50,11 @@ const AddCompanyForm = ({initialData, onClose}: AddCompanyFormProps) => {
     setError("");
     try {
       if(initialData){
-        await companyService.update(initialData.id, form);
-        console.log("Company updated successfully");
+        await companyService.update((initialData.id).toString(), form);
+        console.log("Compañia actualizada");
       }else{
         await companyService.create(form);
-        console.log("Company created successfully");
+        console.log("Compañia creada");
       }
       router.refresh();
       setForm(initialForm);

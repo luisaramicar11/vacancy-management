@@ -8,7 +8,4 @@ export const SelectFieldContainer = styled.div`
   gap: 8px;
   width: 100%;
   margin-bottom: 0rem;
-  &::placeholder {
-    opacity: 0.5;
-  }
 `;

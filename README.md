@@ -37,7 +37,7 @@ The interface will include:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your_username/repository_name.git
+   git clone https://github.com/luisaramicar11/vacancy-management
    cd repository_name
 
 2. Install the dependencies:

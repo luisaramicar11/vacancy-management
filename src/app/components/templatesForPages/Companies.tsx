@@ -35,7 +35,7 @@ const CompanyManagmentTemplate = ({data, pagination}: ICompaniesProps) => {
     }
   };
 
-  const currentPage = pagination.pageNumber +1;
+  const currentPage = pagination.pageNumber + 1;
 
   return (
     <TemplateContainer>
