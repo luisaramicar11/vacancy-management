@@ -3,12 +3,13 @@ import React from "react";
 import { FaSearch } from 'react-icons/fa';
 import { StyledInput, ContainerSearch, IconSearch } from "./InputStyles";
 import { useTheme } from 'styled-components';
+
 interface InputProps {
   type: string;
   id: string;
   placeholder: string;
   value?: string | number;
-  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange?: (value: string) => void; 
   disabled?: boolean;
   name: string;
   required?: boolean;
@@ -26,7 +27,9 @@ const InputSearch: React.FC<InputProps> = ({
   required = false,
   autoComplete,
 }) => {
+
   const theme = useTheme();
+
   return (
     <ContainerSearch>
       <IconSearch color={theme.colors.textLightGray}>
@@ -37,7 +40,7 @@ const InputSearch: React.FC<InputProps> = ({
         id={id}
         placeholder={placeholder}
         value={value}
-        onChange={onChange}
+        onChange={(e)=> onChange?.(e.target.value)}
         disabled={disabled}
         name={name}
         required={required}

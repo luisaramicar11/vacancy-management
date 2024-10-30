@@ -23,8 +23,9 @@ const companyService = new CompanyService();
 
 export default async function LayoutCompanies ({searchParams}: IProps) {
     const page = searchParams.page ? parseInt(searchParams.page.toString()) : 1;
+    const name = searchParams.name ? searchParams.name.toString() : "";
     const size = searchParams.size ? parseInt(searchParams.size.toString()) : 8;
-    const data = await companyService.findAllWithPagination({page, size});
+    const data = await companyService.findAllWithPagination({page, size, name});
     return (
         <CompanyManagmentTemplate data={data} pagination={data.pageable}/>
     )

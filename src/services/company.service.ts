@@ -8,9 +8,9 @@ export class CompanyService {
         this.httpClient = new HttpClient();
     }
 
-    async findAllWithPagination({page, size}:ICompanyRequest){
+    async findAllWithPagination({page, size, name}:ICompanyRequest){
         try {
-            const companies = await this.httpClient.get<ICompany>(`company?page=${page}&size=${size}`)
+            const companies = await this.httpClient.get<ICompany>(`company?page=${page}&size=${size}&name=${name || ""}`)
             return companies;
         } catch (error) {
             console.log(error);

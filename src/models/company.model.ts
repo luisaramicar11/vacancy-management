@@ -37,4 +37,5 @@ export interface IBasicCompany {
 export interface ICompanyRequest {
     page: number;
     size: number;
+    name?: string;
 }

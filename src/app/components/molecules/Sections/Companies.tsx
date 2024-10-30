@@ -10,7 +10,7 @@ import { useState } from "react";
 import { IContent } from "../../../../models/company.model";
 
 interface sectionProps {
-  company: IContent; // Define the type of the company data here, e.g., ICompany from the company.model file
+  company: IContent; 
 }
 
 const Section = ({company}: sectionProps) => {
@@ -33,7 +33,7 @@ const Section = ({company}: sectionProps) => {
           >
             Agregar Compañia
           </Button>
-          <Modal  isOpen={isModalOpen} onClose={closeModal} company={company}/>
+          <Modal isOpen={isModalOpen} onClose={closeModal} company={company} />
     </Container>
   )
 }

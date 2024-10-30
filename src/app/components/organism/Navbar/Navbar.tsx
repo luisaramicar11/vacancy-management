@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter, useSearchParams } from 'next/navigation'; 
 import Button from '../../atoms/Button/WithIcon/Button';
 import InputSearch from '../../atoms/Input/Search/Input';
 import { PiSuitcaseBold } from 'react-icons/pi';
@@ -10,6 +10,9 @@ import { useTheme } from 'styled-components';
 
 const Navbar: React.FC = () => {
   const [activeSection, setActiveSection] = useState<'vacantes' | 'companias'>('vacantes');
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const searchParams = useSearchParams();
   const theme = useTheme();
   const router = useRouter(); 
 
@@ -24,6 +27,17 @@ const Navbar: React.FC = () => {
     setActiveSection('companias');
     router.push('/companies'); 
   };
+
+  const handleChangeSearch = (searchTerm: string) => {
+    setSearchTerm(searchTerm);
+      const params = new URLSearchParams(searchParams.toString());
+      if(searchTerm){
+        params.set('name', searchTerm);
+      }else{
+        params.delete('name');
+      }
+      router.push(`?${params.toString()}`)
+  }
 
   return (
     <>
@@ -56,6 +70,8 @@ const Navbar: React.FC = () => {
           id="search"
           name="search"
           placeholder="Buscar..."
+          value={searchTerm}
+          onChange={(value)=> handleChangeSearch(value)}
         />
       </NavbarContainer>
     </>

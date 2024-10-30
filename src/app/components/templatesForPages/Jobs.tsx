@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import Section from '../molecules/Sections/Jobs';
 import CardsGrid from '../organism/Container/ContainerJobs';
 import PageNavigation from '../molecules/PageNavigation/PageNavigation';
@@ -40,7 +40,7 @@ const router = useRouter();
   return (
     <TemplateContainer>
       <ContentWrapper>
-      <Section />
+      <Section/>
       <CardsGrid data= {data}/>
       </ContentWrapper>
       <PageNavigation
