@@ -24,6 +24,6 @@ export default async function LayoutJobs ({searchParams}: IProps) {
     const page = searchParams.page ? parseInt(searchParams.page.toString()) : 1;
     const data = await vacantService.findAllWithPagination({page, size: 8})
     return (
-        <JobManagmentTemplate data={data} pagination={data.pageable} />
+        <JobManagmentTemplate data={data} pagination={data.pageable} loading={false}/>
     )
 }
